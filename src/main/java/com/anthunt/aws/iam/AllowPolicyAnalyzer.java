@@ -152,13 +152,13 @@ public class AllowPolicyAnalyzer {
 			System.out.println(account.getName());
 			
 			
-			if(AccountStatus.ACTIVE.name().equals(account.getStatus()) && !"KEPAYER".equals(account.getName())) {
+			if(AccountStatus.ACTIVE.name().equals(account.getStatus()) && !"ExcludedProfileName".equals(account.getName())) {
 				try {
 					
 					AssumeRoleResult assumeRoleResult = awsSecurityTokenService.assumeRole(
 							new AssumeRoleRequest()
-								.withRoleArn("arn:aws:iam::" + account.getId() + ":role/AWS")
-								.withRoleSessionName(account.getName() + "@AWS")
+								.withRoleArn("arn:aws:iam::" + account.getId() + ":role/RoleName")
+								.withRoleSessionName(account.getName() + "@RoleName")
 					);
 					
 					Credentials credentials = assumeRoleResult.getCredentials();
